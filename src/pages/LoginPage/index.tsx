@@ -5,8 +5,10 @@ import IllustrationBox from '../../components/IllustrationBox';
 import { StyledButtonLink } from '../../styles/button';
 import { StyledContainer, StyledGridBox } from '../../styles/grid';
 import { StyledParagraph, StyledTitle } from '../../styles/typography';
+import { ToastContainer } from 'react-toastify';
 
-const LoginPage = () => (
+const LoginPage = () => {
+  return (
   <StyledLoginPage>
     <StyledContainer>
       <div className='flexGrid'>
@@ -33,7 +35,8 @@ const LoginPage = () => (
         </div>
       </div>
     </StyledContainer>
+    <ToastContainer/>
   </StyledLoginPage>
-);
+)};
 
 export default LoginPage;

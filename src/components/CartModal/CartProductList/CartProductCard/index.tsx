@@ -1,18 +1,19 @@
-import { MdDelete } from 'react-icons/md';
+import { MdDelete } from "react-icons/md";
 
-import { StyledCartProductCard } from './style';
-import { StyledTitle } from '../../../../styles/typography';
+import { StyledCartProductCard } from "./style";
+import { StyledTitle } from "../../../../styles/typography";
+import { iCartProduct } from "../../../../providers/CartContext";
 
-const CartProductCard = () => (
-  <StyledCartProductCard>
-    <div className='imageBox'>
-      <img src='https://i.imgur.com/Vng6VzV.png' alt='Hamburguer' />
+const CartProductCard = ({ id, name, img }: iCartProduct) => (
+  <StyledCartProductCard id={id}>
+    <div className="imageBox">
+      <img src={img} alt={name} />
     </div>
-    <div className='contentBox'>
-      <StyledTitle tag='h3' $fontSize='three'>
-        Hamburguer
+    <div className="contentBox">
+      <StyledTitle tag="h3" $fontSize="three">
+        {name}
       </StyledTitle>
-      <button type='button' aria-label='Remover'>
+      <button type="button" aria-label="Remover">
         <MdDelete size={24} />
       </button>
     </div>
