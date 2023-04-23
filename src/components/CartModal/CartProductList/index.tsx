@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { CartContext } from "../../../providers/CartContext";
 
 const CartProductList = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, clearCart} = useContext(CartContext);
   const totalValue = () => {
     if (cart) {
       const total = cart
@@ -18,7 +18,10 @@ const CartProductList = () => {
         currency: "BRL",
       });
     } else {
-      return "R$0,00";
+      return Number(0).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
     }
   };
 
@@ -29,7 +32,7 @@ const CartProductList = () => {
           cart.map((element, index) => (
             <CartProductCard
               key={index}
-              id={element.id}
+              id={index.toString()}
               name={element.name}
               img={element.img}
               price={element.price}
@@ -44,7 +47,7 @@ const CartProductList = () => {
         </StyledParagraph>
         <StyledParagraph className="total">{totalValue()}</StyledParagraph>
       </div>
-      <StyledButton $buttonSize="default" $buttonStyle="gray">
+      <StyledButton $buttonSize="default" $buttonStyle="gray" onClick={clearCart}>
         Remover todos
       </StyledButton>
     </StyledCartProductList>

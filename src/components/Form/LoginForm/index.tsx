@@ -4,7 +4,7 @@ import { StyledForm } from "../../../styles/form";
 import Input from "../Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormSchema, tLoginFormValues } from "./LoginFormSchema";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from '../../../providers/UserContext';
 
 const LoginForm = () => {

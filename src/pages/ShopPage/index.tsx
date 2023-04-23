@@ -5,6 +5,7 @@ import ProductList from "../../components/ProductList";
 import { StyledContainer } from "../../styles/grid";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../providers/UserContext";
+import { ToastContainer } from 'react-toastify';
 
 const ShopPage = () => {
   const { modal } = useContext(UserContext);
@@ -18,6 +19,7 @@ const ShopPage = () => {
           <ProductList />
         </StyledContainer>
       </main>
+      <ToastContainer position='bottom-right'/>
     </StyledShopPage>
   );
 };

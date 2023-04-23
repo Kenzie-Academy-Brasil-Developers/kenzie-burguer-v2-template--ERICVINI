@@ -8,10 +8,10 @@ const ProductList = () => {
 
   useEffect(() => {
     getProducts();
-  })
+  }, [])
   return (
   <StyledProductList>
-    {products && products.map(element => <ProductCard key={element.id} id={element.id} category={element.category} img={element.img} name={element.name} price={element.price} />)}
+    {products && products.map(element => <ProductCard key={element.id} element={element} />)}
   </StyledProductList>
 )};
 

@@ -6,6 +6,7 @@ import IllustrationBox from "../../components/IllustrationBox";
 
 import { StyledContainer, StyledGridBox } from "../../styles/grid";
 import { StyledTitle } from "../../styles/typography";
+import { ToastContainer } from "react-toastify";
 
 const RegisterPage = () => {
   return (
@@ -29,6 +30,7 @@ const RegisterPage = () => {
           </div>
         </div>
       </StyledContainer>
+      <ToastContainer />
     </StyledRegisterPage>
   );
 };

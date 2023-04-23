@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 
 const Header = () => {
-  const { handleModal } = useContext(UserContext);
+  const { handleModal, logout } = useContext(UserContext);
 
   return (
     <StyledHeader>
@@ -26,7 +26,7 @@ const Header = () => {
               <button type="button" onClick={handleModal}>
                 <MdShoppingCart size={28} />
               </button>
-              <button type="button">
+              <button type="button" onClick={logout}>
                 <MdLogout size={28} />
               </button>
             </div>
