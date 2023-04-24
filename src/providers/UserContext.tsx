@@ -51,9 +51,11 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
       if (token && window.location.pathname !== "/shop") {
         navigate("/shop");
         return true;
-      } else {
-        navigate("/")
+      } else if(token && window.location.pathname === "/shop") {
+        navigate("/shop")
         return false
+      }else {
+        navigate('/')
       }
     };
     checkUser();

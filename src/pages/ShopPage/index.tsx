@@ -10,6 +10,10 @@ import { ToastContainer } from 'react-toastify';
 const ShopPage = () => {
   const { modal } = useContext(UserContext);
 
+  useEffect(() => {
+    
+  })
+
   return (
     <StyledShopPage>
       {modal && <CartModal />}
