@@ -19,6 +19,27 @@ export const StyledTitle = styled(BaseTitle)<IStyledTitleProps>`
 
   text-align: ${({ textAlign }) => textAlign};
 
+  >.productCount {
+    height: 60%;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #F2F2F2;
+    >button {
+      color: #EB5757;
+      font-size: 1.5rem;
+      width: 10%;
+    }
+    >p {
+      height: 80%;
+      width: 55%;
+      text-align: center;
+      background-color: #fff;
+      font-size: 1rem;
+    }
+  }
+
   ${({ $fontSize }) => {
     switch ($fontSize) {
       case 'one':

@@ -23,7 +23,7 @@ const ProductCard = ({element}: iElement) => {
       </StyledTitle>
       <StyledParagraph className='category'>{element.category}</StyledParagraph>
       <StyledParagraph className='price'>{Number(element.price).toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}</StyledParagraph>
-      <StyledButton $buttonSize='medium' $buttonStyle='green' onClick={() => addToCart(element, element.id)}>
+      <StyledButton $buttonSize='medium' $buttonStyle='green' onClick={() => addToCart(element)}>
         Adicionar
       </StyledButton>
     </div>

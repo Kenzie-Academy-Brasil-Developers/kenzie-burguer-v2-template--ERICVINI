@@ -13,8 +13,10 @@ export interface iCartProduct {
 interface iCartContext {
   cart: iCartProduct[];
   setCart: React.Dispatch<React.SetStateAction<iCartProduct[]>>;
-  addToCart: (item: iCartProduct, index: string) => void;
-  removeFromCart: (itemId: number) => void;
+  totalValue: number;
+  setTotalValue: React.Dispatch<React.SetStateAction<number>>;
+  addToCart: (item: iCartProduct) => void;
+  removeFromCart: (itemId: string) => void;
   clearCart: () => void;
 }
 
@@ -26,32 +28,40 @@ export const CartContext = createContext({} as iCartContext);
 
 export const CartProvider = ({ children }: iCartProviderProps) => {
   const [cart, setCart] = useState<iCartProduct[]>([]);
+  const [totalValue, setTotalValue] = useState<number>(0)
 
-  const addToCart = (item: iCartProduct, index: string) => {
-    const newItem = {...item, id: index}
-    setCart([...cart, newItem]);
-    toast.success("Item adicionado ao carrinho", {
-      autoClose: 2000,
-    })
-  }
-  
-  const removeFromCart = (itemId: number) => {
-    const newCart = cart.filter((_, index) => index !== itemId);
-    setCart(newCart)
+  const addToCart = (item: iCartProduct) => {
+    const checkProduct = cart.find((element) => element.id === item.id);
+    if (!checkProduct) {
+      setCart([...cart, item]);
+      toast.success("Item adicionado ao carrinho", {
+        autoClose: 2000,
+      });
+    } else {
+      toast.warn("Item já adicionado");
+    }
+  };
+
+  const removeFromCart = (itemId: string) => {
+    const newCart = cart.filter((element) => element.id !== itemId);
+    setCart(newCart);
     toast.warn("Item removido do carrinho", {
       autoClose: 2000,
-    })
-  }
+    });
+  };
 
   const clearCart = () => {
     toast.warn("Todos os itens foram removidos", {
       autoClose: 2000,
-    })
-    setCart([])
-  }
+    });
+    setTotalValue(0)
+    setCart([]);
+  };
+
 
   return (
-    <CartContext.Provider value={{ cart, setCart, addToCart, removeFromCart, clearCart}}>
+    <CartContext.Provider
+      value={{ cart, setCart, addToCart, removeFromCart, clearCart, totalValue, setTotalValue}}>
       {children}
     </CartContext.Provider>
   );

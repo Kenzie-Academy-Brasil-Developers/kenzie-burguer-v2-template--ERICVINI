@@ -3,28 +3,17 @@ import CartProductCard from "./CartProductCard";
 import { StyledCartProductList } from "./style";
 import { StyledButton } from "../../../styles/button";
 import { StyledParagraph } from "../../../styles/typography";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../../providers/CartContext";
 
 const CartProductList = () => {
-  const { cart, clearCart} = useContext(CartContext);
-  const totalValue = () => {
-    if (cart) {
-      const total = cart
-        .map((element) => element.price)
-        .reduce((acc, curr) => acc + curr);
-      return Number(total).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-    } else {
-      return Number(0).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-    }
-  };
+  const { cart, clearCart, totalValue, setTotalValue } = useContext(CartContext);
 
+  useEffect(() => {
+    const values = cart.map((element) => element.price);
+    const total = values.reduce((acc, curr) => acc + curr);
+    setTotalValue(Number(total))
+  }, []);
   return (
     <StyledCartProductList>
       <ul>
@@ -32,7 +21,7 @@ const CartProductList = () => {
           cart.map((element, index) => (
             <CartProductCard
               key={index}
-              id={index.toString()}
+              id={element.id}
               name={element.name}
               img={element.img}
               price={element.price}
@@ -45,9 +34,18 @@ const CartProductList = () => {
         <StyledParagraph>
           <strong>Total</strong>
         </StyledParagraph>
-        <StyledParagraph className="total">{totalValue()}</StyledParagraph>
+        <StyledParagraph className="total">
+          {totalValue.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </StyledParagraph>
       </div>
-      <StyledButton $buttonSize="default" $buttonStyle="gray" onClick={clearCart}>
+      <StyledButton
+        $buttonSize="default"
+        $buttonStyle="gray"
+        onClick={clearCart}
+      >
         Remover todos
       </StyledButton>
     </StyledCartProductList>

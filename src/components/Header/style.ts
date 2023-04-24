@@ -19,6 +19,7 @@ export const StyledHeader = styled.header`
 
       .buttons {
         display: flex;
+        position: relative;
         align-items: center;
         justify-content: center;
         gap: 15px;
@@ -30,6 +31,23 @@ export const StyledHeader = styled.header`
 
           :hover {
             color: ${({ theme }) => theme.colors.gray300};
+          }
+        }
+        .cartCount {
+          position: absolute;
+          left: 15px;
+          bottom: 20px;
+          width: 15px;
+          height: 15px;
+          border-radius: 4px;
+          background-color: #27AE60;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          span {
+            font-size: .75rem;
+            font-weight: 700;
+            color: #F5F5F5;
           }
         }
       }
