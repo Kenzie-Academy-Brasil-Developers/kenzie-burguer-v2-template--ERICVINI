@@ -48,10 +48,11 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
   
   useEffect(() => {
     const checkUser = () => {
-      if (token && window.location.pathname !== "/shop") {
+      const acessToken = localStorage.getItem("@ACESSTOKEN");
+      if (acessToken && window.location.pathname !== "/shop") {
         navigate("/shop");
         return true;
-      } else if(token && window.location.pathname === "/shop") {
+      } else if(acessToken && window.location.pathname === "/shop") {
         navigate("/shop")
         return false
       }else {
@@ -59,7 +60,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
       }
     };
     checkUser();
-  }, [token]);
+  }, []);
 
   const handleModal = () => {
     setModal(!modal);
@@ -76,10 +77,10 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
     try {
       const response = await api.post<iResponseBody>("/login", data);
       const { accessToken, user: currentUser } = response.data;
+      toast.success("Login realizado com sucesso");
       localStorage.setItem("@ACESSTOKEN", accessToken);
       setUser(currentUser);
-      toast.success("Login realizado com sucesso");
-      return setTimeout(() => navigate("/shop"), 5000);
+      setTimeout(() => navigate("/shop"), 3000);
     } catch (error: any) {
       toast.error(error.response.data);
       return error;
@@ -93,7 +94,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
       localStorage.setItem("@ACESSTOKEN", accessToken);
       setUser(currentUser);
       toast.success("Cadastro realizado com sucesso");
-      return setTimeout(() => navigate("/"), 5000);
+      setTimeout(() => navigate("/"), 3000);
     } catch (error: any) {
       toast.error(error.response.data);
       return error;
